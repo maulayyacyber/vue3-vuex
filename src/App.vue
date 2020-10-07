@@ -1,16 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Todo List</h1>
+    <h3>Completed: {{ completedTodos }}</h3>
+    <h3>Pending: {{ pendingTodos }}</h3>
+    <todo-list></todo-list>
+    <todo-form></todo-form>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapGetters } from 'vuex'
+import TodosList from './components/TodosList'
+import TodoForm from './components/TodoForm'
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
+    "todo-list": TodosList,
+    "todo-form": TodoForm
+  },
+
+  computed: {
+  ...mapGetters({
+      completedTodos: 'completedTodos',
+      pendingTodos: 'pendingTodos'
+    })
   }
+
 }
 </script>
 
